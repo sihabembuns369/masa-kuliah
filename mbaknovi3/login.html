@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <title>Upcube - Responsive Flat Admin Dashboard</title>
+    <meta content="Admin Dashboard" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App Icons -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+
+<body>
+
+    <!-- Begin page -->
+    <div class="accountbg"></div>
+    <div class="wrapper-page">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="text-center mt-0 m-b-15">
+                    <a href="./index.html" class="logo logo-admin"><img src="assets/images/logo-dark.png" height="30"
+                            alt="logo" /></a>
+                </h3>
+
+                <h4 class="text-muted text-center font-18"><b>Sign In</b></h4>
+
+                <div class="p-3">
+                    <form class="form-horizontal m-t-20" action="index.html" />
+
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <input value="admin" class="form-control" type="text" id="ussername" required="" placeholder="Username" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <input value="admin" class="form-control" type="password" id="password" required=""
+                                placeholder="Password" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group text-center row m-t-20">
+                        <div class="col-12">
+                            <button class="btn btn-info btn-block waves-effect waves-lighs" onclick="loginku();" type="button">Log
+                                In</button>
+                        </div>
+                    </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/jquery.nicescroll.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="assets/pages/sweet-alert.init.js"></script>
+<script src="alamat.js"></script>
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        function loginku() {
+            var user = $("#ussername").val();
+            var pass = $("#password").val();
+            if (user == ''|| pass == '') {
+                swal({
+                    title: 'login gagal',
+                    text: 'password / user kosong',
+                    type: 'error',
+                    confirmButtonClass: 'btn btn-danger'
+                })
+                return;
+            } 
+            $.ajax({
+            // url:'http://sihabembuns.com/mbaknovi2/Api/login',
+            url: login,
+            method:'POST',
+            data:{x:user ,z:pass},
+            cache:'false',
+            success:function(x){
+                console.log(x);
+                var dt = x.split('|');
+                if(dt[0]=='1'){
+                    console.log(dt);
+                    localStorage.setItem('sihab',user)
+                    localStorage.setItem('sihab',dt[1])
+                    window.location.href ='index.html';
+                }else{
+                    swal({
+                    title: 'login gagal',
+                    text: dt[1],
+                    type: 'error',
+                    confirmButtonClass: 'btn btn-danger'
+                })
+                }
+            }
+        })
+
+        }
+
+       
+    </script>
+
+</body>
+
+</html>
